@@ -1,0 +1,10 @@
+flask
+flask-cors
+python-dotenv
+pandas
+numpy
+scikit-learn
+imbalanced-learn
+joblib
+psycopg2-binary
+PyJWT
