@@ -1,0 +1,22 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Flask
+.env
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/
+build/
+
+# Android
+android/.gradle/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store

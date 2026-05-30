@@ -1,0 +1,16 @@
+Flask==3.1.1
+flask-cors==6.0.1
+python-dotenv==1.1.1
+
+pandas==2.3.1
+numpy==2.3.2
+scikit-learn==1.8.0
+imbalanced-learn==0.14.0
+joblib==1.5.2
+
+psycopg2-binary==2.9.10
+
+matplotlib==3.10.5
+seaborn==0.13.2
+
+gunicorn==23.0.0
