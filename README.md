@@ -1,102 +1,199 @@
 # FraudX – AI-Powered Fraud Detection in Digital Transactions
 
-FraudX is a full-stack digital banking simulation platform with AI-powered fraud detection for financial transactions. The system combines machine learning, backend APIs, mobile application development, and transaction monitoring to simulate fraud prevention in a banking environment.
+FraudX is a full-stack digital banking simulation platform with AI-powered fraud detection for financial transactions. The system combines machine learning, backend APIs, mobile application development, cloud deployment, and transaction monitoring to simulate fraud prevention in a banking environment.
+
+---
+
+## Key Highlights
+
+* Trained on 6M+ PaySim transactions
+* Achieved 93.9% Precision and 100% Recall
+* Flutter mobile application
+* Flask REST API backend
+* PostgreSQL database integration
+* JWT-based authentication
+* Device verification workflow
+* Dockerized deployment
+* AWS EC2 cloud hosting
+* Real Android device testing
+* Admin analytics dashboard
 
 ---
 
 ## Overview
 
-FraudX detects suspicious financial transactions using a Balanced Random Forest model trained on the PaySim dataset (~6M transactions).
+FraudX detects suspicious financial transactions using a Balanced Random Forest model trained on the PaySim dataset (~6 million transactions).
 
-Features include:
+The system simulates a digital banking environment where users can transfer money, view transaction history, receive fraud alerts, and monitor risk levels while administrators can oversee platform-wide fraud activity.
 
-- Real-time fraud prediction
-- Fraud probability scoring
-- Device verification checks
-- Dynamic user risk levels
-- Transaction history tracking
-- Fraud alerts dashboard
-- Admin analytics panel
-- User/Admin role separation
+### Features
+
+* Real-time fraud prediction
+* Fraud probability scoring
+* Device verification checks
+* Dynamic user risk levels
+* Transaction history tracking
+* Fraud alerts dashboard
+* Admin analytics panel
+* User/Admin role separation
+* JWT authentication
+* Cloud deployment on AWS
 
 ---
 
-## Architecture Diagram
+## System Architecture
 
-<img width="552" height="732" alt="image" src="https://github.com/user-attachments/assets/e8f04bac-d2e8-42e1-b4fa-9e83de9a0cf9" />
+<img width="552" height="732" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/e8f04bac-d2e8-42e1-b4fa-9e83de9a0cf9" />
 
+---
+
+## Deployment Architecture
+
+```text
+Flutter Android App
+         │
+         ▼
+AWS EC2 Instance
+         │
+         ▼
+Docker Container
+         │
+         ▼
+Flask REST APIs
+         │
+         ▼
+PostgreSQL Database
+         │
+         ▼
+Fraud Detection Engine
+(Balanced Random Forest)
+```
 
 ---
 
 ## Tech Stack
 
 ### Frontend
-- Flutter
-- Dart
+
+* Flutter
+* Dart
 
 ### Backend
-- Flask
-- REST APIs
+
+* Flask
+* REST APIs
+* JWT Authentication
 
 ### Machine Learning
-- Balanced Random Forest
-- Scikit-Learn
-- Pandas
-- NumPy
+
+* Balanced Random Forest
+* Scikit-Learn
+* Pandas
+* NumPy
+* Imbalanced-Learn
 
 ### Database
-- PostgreSQL
 
-### Deployment & Tools
-- Ubuntu VM
-- Git
-- GitHub
+* PostgreSQL
+
+### Cloud & DevOps
+
+* AWS EC2
+* Docker
+* Ubuntu Linux
+
+### Tools
+
+* Git
+* GitHub
 
 ---
 
-## ML Pipeline
+## Machine Learning Pipeline
 
 ### Dataset
-PaySim Dataset (~6M records)
+
+* PaySim Dataset (~6M transactions)
 
 ### Feature Engineering
 
-Implemented features:
+Implemented features include:
 
-- Transaction type encoding
-- Amount-to-balance ratio
-- Device transaction statistics
-- User behavioral averages
-- Night transaction flag
-- Device verification checks
-- Distance-from-home estimation
-- Risk transaction indicators
+* Transaction type encoding
+* Amount-to-balance ratio
+* Device transaction statistics
+* User behavioral averages
+* Night transaction indicator
+* Device verification checks
+* Distance-from-home estimation
+* High-risk transaction indicators
 
 ### Model
 
-BalancedRandomForestClassifier
-
-Model configuration:
-
-- n_estimators = 300
-- max_depth = 5
+```python
+BalancedRandomForestClassifier(
+    n_estimators=300,
+    max_depth=5,
+    random_state=42
+)
+```
 
 ### Evaluation Metrics
 
-| Metric | Value |
-|----------|-------|
+| Metric    | Score |
+| --------- | ----- |
 | Precision | 93.9% |
-| Recall | 100% |
+| Recall    | 100%  |
+
+---
+
+## Security Features
+
+* JWT-based Authentication
+* User/Admin Role Separation
+* Device Verification Checks
+* Fraud Probability Scoring
+* Transaction Monitoring
+* Fraud Alert Generation
 
 ---
 
 ## API Endpoints
 
+### Authentication
+
+#### Login
+
+```http
+POST /api/auth/login
+```
+
+Request
+
+```json
+{
+  "email": "user@example.com",
+  "password": "password"
+}
+```
+
+Response
+
+```json
+{
+  "token": "jwt_token"
+}
+```
+
+---
+
 ### Transfer Money
 
-**POST** `/api/transaction/transfer`
+```http
+POST /api/transaction/transfer
+```
 
-Request:
+Request
 
 ```json
 {
@@ -107,7 +204,7 @@ Request:
 }
 ```
 
-Response:
+Response
 
 ```json
 {
@@ -120,30 +217,25 @@ Response:
 
 ### Transaction History
 
-**GET** `/api/transaction/history/<user_id>`
+```http
+GET /api/transaction/history/<user_id>
+```
 
 ---
 
 ### Fraud Transactions
 
-**GET** `/api/transaction/fraud/<user_id>`
+```http
+GET /api/transaction/fraud/<user_id>
+```
 
 ---
 
 ### Admin Statistics
 
-**GET** `/api/admin/stats`
-
----
-
-## Screenshots
-
-- Login Screen
-- Dashboard
-- Send Money
-- Fraud Alert
-- Transaction History
-- Admin Dashboard
+```http
+GET /api/admin/stats
+```
 
 ---
 
@@ -151,24 +243,76 @@ Response:
 
 ### Users
 
-- user_id
-- email
-- password
-- risk_level
+* user_id
+* name
+* email
+* password
+* risk_level
+* is_admin
+
+### Accounts
+
+* account_id
+* user_id
+* balance
 
 ### Transactions
 
-- sender_id
-- receiver_id
-- amount
-- fraud_flag
-- fraud_probability
-- timestamp
+* sender_id
+* receiver_id
+* amount
+* fraud_flag
+* fraud_probability
+* timestamp
 
-### Devices
+### User Devices
 
-- device_id
-- user_id
+* device_id
+* user_id
+
+---
+
+## Screenshots
+
+### User Features
+
+* Login Screen
+* Dashboard
+* Send Money
+* Transaction History
+* Fraud Alerts
+
+### Admin Features
+
+* Admin Dashboard
+* System Statistics
+* User Management
+* Fraud Monitoring
+
+> Add screenshots here
+
+---
+
+## End-to-End Testing
+
+FraudX was tested using:
+
+* Flutter Android Application
+* AWS-hosted Backend
+* PostgreSQL Database
+* Dockerized Deployment
+* Real Internet Connectivity
+
+### Verified Workflows
+
+* User Login
+* Money Transfer
+* Fraud Prediction
+* Transaction History
+* Fraud Alerts
+* Admin Dashboard
+* JWT Authentication
+* Device Verification
 
 ---
 
@@ -177,10 +321,12 @@ Response:
 ### Clone Repository
 
 ```bash
-git clone <repo_url>
+git clone https://github.com/yourusername/FraudX.git
 ```
 
-### Backend
+---
+
+### Backend Setup
 
 ```bash
 cd backend
@@ -190,9 +336,13 @@ pip install -r requirements.txt
 python app.py
 ```
 
-### Frontend
+---
+
+### Frontend Setup
 
 ```bash
+cd fraudx_app
+
 flutter pub get
 
 flutter run
@@ -200,29 +350,54 @@ flutter run
 
 ---
 
-## Results
+### Docker Deployment
 
-- Precision: 93.9%
-- Recall: 100%
-- Fraud probability scoring
-- Dynamic risk level updates
-- Device verification workflow
+Build Image
+
+```bash
+docker build -t fraudx-backend .
+```
+
+Run Container
+
+```bash
+docker run -d -p 5000:5000 fraudx-backend
+```
 
 ---
 
-## Future Work
+## Results
 
-- JWT authentication
-- Docker deployment
-- Redis caching
-- CI/CD pipeline
-- Explainable AI integration
+* Precision: 93.9%
+* Recall: 100%
+* Fraud Probability Scoring
+* Dynamic Risk Level Updates
+* Device Verification Workflow
+* Cloud Deployment Validation
+* Mobile-to-Cloud Communication Verified
+
+---
+
+## Future Improvements
+
+* Redis Caching
+* CI/CD Pipeline
+* Explainable AI (XAI)
+* Multi-Factor Authentication
+* Real-Time Streaming Fraud Detection
+* Kubernetes Deployment
 
 ---
 
 ## Contributors
 
-- Rhiya Giridhara Bhat
-- Chirag N
-- Ghanashyam D
-- Tarun GP
+* Chirag N
+* Rhiya Giridhara Bhat
+* Ghanashyam D
+* Tarun GP
+
+---
+
+## License
+
+This project was developed for academic and educational purposes.
